@@ -40,11 +40,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
             this.listBox1.Items.AddRange(new object[] {
-            "09359313137",
-            "09359313137",
-            "09359313137",
-            "09359313137",
-            "09359313137"});
+            "1"});
             this.listBox1.Location = new System.Drawing.Point(627, 31);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(193, 364);
@@ -75,11 +71,7 @@
             this.listBox2.FormattingEnabled = true;
             this.listBox2.ItemHeight = 20;
             this.listBox2.Items.AddRange(new object[] {
-            "09359313137",
-            "09359313137",
-            "09359313137",
-            "09359313137",
-            "09359313137"});
+            "1"});
             this.listBox2.Location = new System.Drawing.Point(12, 31);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(561, 364);
