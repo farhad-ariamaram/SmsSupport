@@ -88,6 +88,8 @@ namespace SmsSupport
 		
 		private string _Message;
 		
+		private System.Nullable<bool> _IsVisit;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -100,6 +102,8 @@ namespace SmsSupport
     partial void OnDateChanged();
     partial void OnMessageChanging(string value);
     partial void OnMessageChanged();
+    partial void OnIsVisitChanging(System.Nullable<bool> value);
+    partial void OnIsVisitChanged();
     #endregion
 		
 		public Tbl_SmsReceived()
@@ -183,6 +187,26 @@ namespace SmsSupport
 					this._Message = value;
 					this.SendPropertyChanged("Message");
 					this.OnMessageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsVisit", DbType="Bit")]
+		public System.Nullable<bool> IsVisit
+		{
+			get
+			{
+				return this._IsVisit;
+			}
+			set
+			{
+				if ((this._IsVisit != value))
+				{
+					this.OnIsVisitChanging(value);
+					this.SendPropertyChanging();
+					this._IsVisit = value;
+					this.SendPropertyChanged("IsVisit");
+					this.OnIsVisitChanged();
 				}
 			}
 		}

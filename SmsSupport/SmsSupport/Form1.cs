@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace SmsSupport
 {
+
+
     public partial class Form1 : Form
     {
         DCDataContext _db;
@@ -22,29 +24,54 @@ namespace SmsSupport
         private void Form1_Load(object sender, EventArgs e)
         {
             var q = _db.Tbl_SmsReceiveds.GroupBy(a => a.Phone).Select(b => b.Key);
+
             if (q.Any())
             {
-                listBox1.DataSource = q;
+                foreach (var item in q.ToList())
+                {
+
+                    var qu = _db.Tbl_SmsReceiveds.Where(a => a.Phone.Equals(item)).Where(a=>a.IsVisit==false || a.IsVisit == null);
+                    if (qu.Any())
+                    {
+                        listView1.Items.Add(item);
+                        listView1.Items[listView1.Items.Count - 1].ForeColor = Color.Blue;
+                    }
+                    else
+                    {
+                        listView1.Items.Add(item);
+                    }
+
+                }
             }
         }
 
-        private void listBox2_DoubleClick(object sender, EventArgs e)
+        private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            if (listBox2.SelectedItem != null)
+            if (listView1.SelectedItems.Count > 0)
             {
-                MessageBox.Show(listBox2.SelectedItem.ToString());
+                string currentPhone = listView1.SelectedItems[0].Text;
+                var q = _db.Tbl_SmsReceiveds.Where(a => a.Phone.Equals(currentPhone));
+                listView2.Clear();
+                foreach (var item in q.ToList())
+                {
+                    listView2.Items.Add(item.Message);
+                    if(item.IsVisit == false || item.IsVisit==null)
+                    {
+                        item.IsVisit = true;
+                    }
+                }
+                _db.SubmitChanges();
+                listView1.SelectedItems[0].ForeColor = Color.Black;
             }
         }
 
-        private void listBox1_DoubleClick(object sender, EventArgs e)
+        private void listView2_DoubleClick(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
+            if (listView2.SelectedItems.Count > 0)
             {
-                string currentPhone = listBox1.SelectedItem.ToString();
-                var q = _db.Tbl_SmsReceiveds.Where(a => a.Phone.Equals(currentPhone)).Select(b => b.Message);
-
-                listBox2.DataSource = q;
+                MessageBox.Show(listView2.SelectedItems[0].Text);
             }
         }
     }
+
 }
