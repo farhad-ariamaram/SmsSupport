@@ -72,6 +72,7 @@
             this.listView2.Location = new System.Drawing.Point(12, 31);
             this.listView2.MultiSelect = false;
             this.listView2.Name = "listView2";
+            this.listView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.listView2.ShowGroups = false;
             this.listView2.Size = new System.Drawing.Size(561, 360);
             this.listView2.TabIndex = 2;
