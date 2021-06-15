@@ -72,6 +72,12 @@ namespace SmsSupport
                 MessageBox.Show(listView2.SelectedItems[0].Text);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listView1.Clear();
+            Form1_Load(this,e);
+        }
     }
 
 }
